@@ -46,35 +46,46 @@ ul {
   padding-inline-start: 20px;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   font-family: sans-serif;
   margin: 20px;
   padding: 0;
 }
 
+/* Board layout  */
+
+.board-row {
+  display: flex;
+}
+
 .square {
   background: #fff;
   border: 1px solid #999;
-  float: left;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
   padding: 0;
-  text-align: center;
-  width: 34px;
+  cursor: pointer;
+  /* user-select: none; */
 }
 
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
+/* every .square except the last one inside its parent */
+.square:not(:last-child) {
+  border-right: none;
+}
+
+/* target .square from all the board-row that is not the last child */
+.board-row:not(:last-child) .square {
+  border-bottom: none;
+}
+
+.square:hover {
+  background-color: #f0f0f0;
 }
 
 .status {
