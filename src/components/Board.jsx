@@ -2,9 +2,6 @@ import Square from "./Square";
 import { calculateWinner } from "../utils/gameHelpers";
 const Board = ({ xIsNext, squares, onPlay }) => {
   const { winner, winningSquares } = calculateWinner(squares);
-  let status = winner
-    ? `Winner: ${winner}`
-    : `Next Player: ${xIsNext ? "X" : "O"}`;
 
   const handleClick = (i) => {
     if (squares[i] || winner) return;
@@ -32,7 +29,6 @@ const Board = ({ xIsNext, squares, onPlay }) => {
 
   return (
     <>
-      <div className="status">{status}</div>
       {boardRows}
 
       {/* copy of original implementation for future references */}
