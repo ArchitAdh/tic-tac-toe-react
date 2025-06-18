@@ -47,6 +47,8 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #f7f7f7;
+  flex-wrap: wrap;
+  gap: 2rem;
   /* background-color: red; */
 }
 .game-main {
@@ -64,6 +66,7 @@ body {
 .game-controls {
   margin-top: 1rem;
   text-align: center;
+  flex-wrap: wrap;
 }
 
 .game-info {
@@ -78,6 +81,7 @@ body {
   border-radius: 6px;
   padding: 4px;
   margin-top: 4px;
+  font-size: 1.2rem;
 }
 
 .square.winning {
