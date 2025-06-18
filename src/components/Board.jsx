@@ -1,14 +1,13 @@
 import Square from "./Square";
 import { calculateWinner } from "../utils/gameHelpers";
 const Board = ({ xIsNext, squares, onPlay }) => {
-  const winner = calculateWinner(squares);
-  let status;
-  winner
-    ? (status = `Winner: ${winner}`)
-    : (status = `Next Player: ${xIsNext ? "X" : "O"}`);
+  const { winner, winningSquares } = calculateWinner(squares);
+  let status = winner
+    ? `Winner: ${winner}`
+    : `Next Player: ${xIsNext ? "X" : "O"}`;
 
   const handleClick = (i) => {
-    if (squares[i] || calculateWinner(squares)) return;
+    if (squares[i] || winner) return;
     const nextSquares = squares.slice();
     xIsNext ? (nextSquares[i] = "X") : (nextSquares[i] = "O");
     onPlay(nextSquares);
@@ -24,6 +23,7 @@ const Board = ({ xIsNext, squares, onPlay }) => {
             key={index}
             value={squares[index]}
             onSquareClick={() => handleClick(index)}
+            isWinning={winningSquares.includes(index)}
           />
         );
       })}
@@ -35,6 +35,7 @@ const Board = ({ xIsNext, squares, onPlay }) => {
       <div className="status">{status}</div>
       {boardRows}
 
+      {/* copy of original implementation for future references */}
       {/* <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
