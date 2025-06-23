@@ -52,18 +52,6 @@ body {
   /* background-color: red; */
 }
 
-.name-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.name-inputs input {
-  display: block;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-}
-
 .game-main {
   background: white;
   padding: 20px;
@@ -108,4 +96,16 @@ body {
 
 .move-button.active {
   font-weight: bold;
+}
+
+.setup-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.setup-screen input {
+  display: block;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
 }

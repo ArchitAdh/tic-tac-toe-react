@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Board from "./components/Board";
+import SetupScreen from "./components/SetupScreen";
 import { calculateWinner } from "./utils/gameHelpers";
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
-  // players name
   const [playerX, setPlayerX] = useState("");
   const [playerO, setPlayerO] = useState("");
 
@@ -31,13 +31,13 @@ const Game = () => {
   }
 
   //handle game start flag
-  const handleStartGame = () => {
-    if (playerO.trim() && playerX.trim()) {
-      setGameStarted(true);
-    } else {
-      alert("Please Enter Names for both players");
-    }
-  };
+  // const handleStartGame = () => {
+  //   if (playerO.trim() && playerX.trim()) {
+  //     setGameStarted(true);
+  //   } else {
+  //     alert("Please Enter Names for both players");
+  //   }
+  // };
 
   // reset game
   const handleReset = () => {
@@ -45,7 +45,7 @@ const Game = () => {
     setCurrentMove(0);
   };
 
-  const moves = history.map((squares, move) => {
+  const moves = history.map((move) => {
     let description;
     move > 0
       ? (description = `Go to move # ${move}`)
@@ -62,38 +62,17 @@ const Game = () => {
       </li>
     );
   });
+  // props grouping
+  const playerState = { playerO, setPlayerO, playerX, setPlayerX };
+  const gameState = { gameStarted, setGameStarted, handleReset, status };
 
   return (
     <div className="game-container">
-      <div className="name-inputs">
-        <div className="playerX">
-          <label htmlFor="playerX">Player X Name</label>
-          <input
-            type="text"
-            value={playerX}
-            onChange={(e) => setPlayerX(e.target.value)}
-            placeholder="Player X"
-          />
-        </div>
-        <div className="playerO">
-          <label htmlFor="playerO">Player O Name</label>
-          <input
-            type="text"
-            value={playerO}
-            onChange={(e) => setPlayerO(e.target.value)}
-            placeholder="Player O"
-          />
-        </div>
-
-        {!gameStarted ? (
-          <button onClick={handleStartGame}>Start Game</button>
-        ) : (
-          <div className="game-controls">
-            <p className="status">{status}</p>
-            <button onClick={handleReset}>Restart</button>
-          </div>
-        )}
-      </div>
+      <SetupScreen
+        playerState={playerState}
+        gameState={gameState}
+        status={gameStarted ? status : null}
+      />
       {gameStarted && (
         <>
           {" "}
