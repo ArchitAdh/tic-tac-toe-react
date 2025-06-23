@@ -30,15 +30,6 @@ const Game = () => {
     setCurrentMove(nextMove);
   }
 
-  //handle game start flag
-  // const handleStartGame = () => {
-  //   if (playerO.trim() && playerX.trim()) {
-  //     setGameStarted(true);
-  //   } else {
-  //     alert("Please Enter Names for both players");
-  //   }
-  // };
-
   // reset game
   const handleReset = () => {
     setHistory([Array(9).fill(null)]);

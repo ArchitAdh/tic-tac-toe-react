@@ -4,39 +4,50 @@ const SetupScreen = ({ playerState, gameState }) => {
   const { playerX, setPlayerX, playerO, setPlayerO } = playerState;
   const { gameStarted, setGameStarted, handleReset, status } = gameState;
 
-  const handleStartGame = () => {
-    if (playerO.trim() && playerX.trim()) {
-      setGameStarted(true);
-    } else {
-      alert("Please Enter Names for both players");
-    }
-  };
   return (
     <div className="setup-screen">
       {!gameStarted ? (
-        <form onSubmit={handleStartGame}>
-          <div className="playerX">
-            <label htmlFor="playerX">Player X Name</label>
-            <input
-              id="playerX"
-              type="text"
-              value={playerX}
-              onChange={(e) => setPlayerX(e.target.value)}
-              placeholder="Player X"
-            />
+        <>
+          <div className="setup-image">
+            <h2 className="setup-heading">
+              Tic Tac Toe
+              <small>Let's Play</small>
+            </h2>
           </div>
-          <div className="playerO">
-            <label htmlFor="playerO">Player O Name</label>
-            <input
-              id="playerO"
-              type="text"
-              value={playerO}
-              onChange={(e) => setPlayerO(e.target.value)}
-              placeholder="Player O"
-            />
-          </div>
-          <button type="submit">Start game</button>
-        </form>
+          <form className="setup-form" onSubmit={() => setGameStarted(true)}>
+            <div className="playerX input">
+              <input
+                className="input-field"
+                id="playerX"
+                type="text"
+                value={playerX}
+                onChange={(e) => setPlayerX(e.target.value)}
+                required
+              />
+              <label htmlFor="playerX" className="input-label">
+                player X name
+              </label>
+            </div>
+            <div className="playerO input">
+              <input
+                className="input-field"
+                id="playerO"
+                type="text"
+                value={playerO}
+                onChange={(e) => setPlayerO(e.target.value)}
+                required
+              />
+              <label htmlFor="playerO" className="input-label">
+                Player O Name
+              </label>
+            </div>
+            <div className="action">
+              <button className="action-button" type="submit">
+                Start game
+              </button>
+            </div>
+          </form>
+        </>
       ) : (
         <>
           <p className="status">{status}</p>
