@@ -14,7 +14,13 @@ const SetupScreen = ({ playerState, gameState }) => {
               <small>Let's Play</small>
             </h2>
           </div>
-          <form className="setup-form" onSubmit={() => setGameStarted(true)}>
+          <form
+            className="setup-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setGameStarted(true);
+            }}
+          >
             <div className="playerX input">
               <input
                 className="input-field"
