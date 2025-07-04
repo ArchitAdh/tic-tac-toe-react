@@ -2,6 +2,8 @@ import { useState } from "react";
 import Board from "./components/Board";
 import SetupScreen from "./components/SetupScreen";
 import { calculateWinner } from "./utils/gameHelpers";
+import undoIcon from "./assets/undo.svg";
+import redoIcon from "./assets/redo.svg";
 const Game = () => {
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -60,6 +62,19 @@ const Game = () => {
     setCurrentMove(0);
   };
 
+  // handle Redo and Undo
+  const handleUndo = () => {
+    if (currentMove > 0) {
+      setCurrentMove(currentMove - 1);
+    }
+  };
+
+  const handleRedo = () => {
+    if (currentMove < history.length - 1) {
+      setCurrentMove(currentMove + 1);
+    }
+  };
+
   const moves = history.map((squares, move) => {
     let description;
     move > 0
@@ -93,6 +108,17 @@ const Game = () => {
                 squares={currentSquares}
                 onPlay={handlePlay}
               />
+            </div>
+            <div className="game-controls">
+              <button onClick={handleUndo} disabled={currentMove === 0}>
+                <img src={undoIcon} alt="Undo" width="24" height="24" />
+              </button>
+              <button
+                onClick={handleRedo}
+                disabled={currentMove === history.length - 1}
+              >
+                <img src={redoIcon} alt="Undo" width="24" height="24" />
+              </button>
             </div>
             <>
               {status()}

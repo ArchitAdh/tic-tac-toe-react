@@ -26,7 +26,7 @@ const SetupScreen = ({ playerState, gameState }) => {
                 maxLength="7"
               />
               <label htmlFor="playerX" className="input-label">
-                player X name
+                Player X Name
               </label>
             </div>
             <div className="playerO input">

@@ -94,10 +94,13 @@ body {
 }
 
 .game-controls {
-  text-align: center;
-  flex-wrap: wrap;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-evenly;
 }
-
+.game-controls button {
+  cursor: pointer;
+}
 .game-info {
   font-size: 14px;
   max-height: 200px;
