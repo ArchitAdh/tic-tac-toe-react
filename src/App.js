@@ -14,9 +14,23 @@ const Game = () => {
   const currentSquares = history[currentMove];
   const result = calculateWinner(currentSquares);
   const winner = result?.winner;
-  const status = winner
-    ? `Winner: ${winner === "X" ? playerX : playerO}`
-    : `Next Player: ${xIsNext ? playerX : playerO}`;
+
+  const status = () => {
+    if (winner) {
+      return (
+        <p className="status-head">
+          Winner: <span> {winner === "X" ? playerX : playerO} </span>
+        </p>
+      );
+    } else {
+      return (
+        <p className="status-head">
+          Next Player:{" "}
+          <span> {xIsNext ? "(X) " + playerX : "(O) " + playerO} </span>
+        </p>
+      );
+    }
+  };
 
   function handlePlay(nextSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -34,9 +48,19 @@ const Game = () => {
   const handleReset = () => {
     setHistory([Array(9).fill(null)]);
     setCurrentMove(0);
+    setPlayerX(playerO);
+    setPlayerO(playerX);
+  };
+  // FULL reset
+  const handleFullReset = () => {
+    setPlayerX("");
+    setPlayerO("");
+    setGameStarted(false);
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
   };
 
-  const moves = history.map((move) => {
+  const moves = history.map((squares, move) => {
     let description;
     move > 0
       ? (description = `Go to move # ${move}`)
@@ -55,18 +79,13 @@ const Game = () => {
   });
   // props grouping
   const playerState = { playerO, setPlayerO, playerX, setPlayerX };
-  const gameState = { gameStarted, setGameStarted, handleReset, status };
+  const gameState = { gameStarted, setGameStarted };
 
   return (
     <div className="game-container">
-      <SetupScreen
-        playerState={playerState}
-        gameState={gameState}
-        status={gameStarted ? status : null}
-      />
+      <SetupScreen playerState={playerState} gameState={gameState} />
       {gameStarted && (
         <>
-          {" "}
           <div className="game-main">
             <div className="game-board">
               <Board
@@ -75,6 +94,21 @@ const Game = () => {
                 onPlay={handlePlay}
               />
             </div>
+            <>
+              {status()}
+              <button
+                className="action-button reset --green"
+                onClick={handleReset}
+              >
+                Play Again
+              </button>
+              <button
+                className="action-button reset --red"
+                onClick={handleFullReset}
+              >
+                Restart
+              </button>
+            </>
           </div>
           <div className="game-info">
             <ol>{moves}</ol>

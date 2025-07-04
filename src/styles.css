@@ -4,7 +4,7 @@
 
 body {
   font-family: sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* Board layout  */
@@ -38,13 +38,40 @@ body {
   background-color: #f0f0f0;
 }
 
-.status {
-  margin-bottom: 10px;
+.status-head {
+  margin: 0;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.222;
+  border-radius: 6px;
+
+  /* gradient */
+  background: #bdc3c7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #2c3e50,
+    #bdc3c7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #2c3e50,
+    #bdc3c7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+.status-head span {
+  color: #1a172c;
+  text-transform: capitalize;
+}
+
 .game-container {
   display: flex;
   justify-content: center;
   align-items: center;
+
   min-height: 100vh;
   background-color: #f7f7f7;
   flex-wrap: wrap;
@@ -53,6 +80,8 @@ body {
 }
 
 .game-main {
+  width: 100%;
+  max-width: 350px;
   background: white;
   padding: 20px;
   border-radius: 12px;
@@ -71,6 +100,8 @@ body {
 
 .game-info {
   font-size: 14px;
+  max-height: 200px;
+  overflow: auto;
 }
 
 .game-info button {
@@ -101,14 +132,11 @@ body {
 .setup-screen {
   display: flex;
   flex-direction: column;
-  /* gap: 2rem; */
-  /* test */
-  margin: 2rem auto;
   width: 100%;
   max-width: 425px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
+  box-shadow: 0 10px 20px 0 rgba(153, 153, 153, 0.25);
   padding: 0.75rem;
 }
 
@@ -116,7 +144,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
   padding-bottom: 65%;
-  background-image: url("https://assets.codepen.io/285131/coffee_1.jpg");
+  background-image: url("./assets/Screenshot\ from\ 2025-06-24\ 19-27-38.png");
   background-repeat: no-repeat;
   background-size: 150%;
   background-position: 0 5%;
@@ -203,4 +231,17 @@ body {
 
 .action-button:focus {
   outline: 0;
+}
+
+.action-button.reset {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.--red {
+  background-color: #dc2626;
+}
+
+.--green {
+  background-color: #65a30d;
 }

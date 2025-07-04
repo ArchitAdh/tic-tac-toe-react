@@ -2,12 +2,12 @@
 
 const SetupScreen = ({ playerState, gameState }) => {
   const { playerX, setPlayerX, playerO, setPlayerO } = playerState;
-  const { gameStarted, setGameStarted, handleReset, status } = gameState;
+  const { gameStarted, setGameStarted } = gameState;
 
   return (
-    <div className="setup-screen">
-      {!gameStarted ? (
-        <>
+    <>
+      {!gameStarted && (
+        <div className="setup-screen">
           <div className="setup-image">
             <h2 className="setup-heading">
               Tic Tac Toe
@@ -23,6 +23,7 @@ const SetupScreen = ({ playerState, gameState }) => {
                 value={playerX}
                 onChange={(e) => setPlayerX(e.target.value)}
                 required
+                maxLength="7"
               />
               <label htmlFor="playerX" className="input-label">
                 player X name
@@ -36,6 +37,7 @@ const SetupScreen = ({ playerState, gameState }) => {
                 value={playerO}
                 onChange={(e) => setPlayerO(e.target.value)}
                 required
+                maxLength="7"
               />
               <label htmlFor="playerO" className="input-label">
                 Player O Name
@@ -47,14 +49,9 @@ const SetupScreen = ({ playerState, gameState }) => {
               </button>
             </div>
           </form>
-        </>
-      ) : (
-        <>
-          <p className="status">{status}</p>
-          <button onClick={handleReset}>Restart</button>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default SetupScreen;
