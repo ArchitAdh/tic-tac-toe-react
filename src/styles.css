@@ -4,7 +4,7 @@
 
 body {
   font-family: sans-serif;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 /* Board layout  */
@@ -47,7 +47,7 @@ body {
   color: #fff;
   line-height: 1.222;
   border-radius: 6px;
-
+  text-align: center;
   /* gradient */
   background: #bdc3c7; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -71,15 +71,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
   min-height: 100vh;
   background-color: #f7f7f7;
-  flex-wrap: wrap;
   gap: 2rem;
-  /* background-color: red; */
 }
 
 .game-main {
+  flex: 1 1 auto;
   width: 100%;
   max-width: 350px;
   background: white;
@@ -103,8 +101,7 @@ body {
 }
 .game-info {
   font-size: 14px;
-  max-height: 200px;
-  overflow: auto;
+  flex: 0 0 230px;
 }
 
 .game-info button {

@@ -18,12 +18,15 @@ const Game = () => {
   const winner = result?.winner;
 
   const status = () => {
+    const isDraw = !winner && currentSquares.every((square) => square !== null);
     if (winner) {
       return (
         <p className="status-head">
           Winner: <span> {winner === "X" ? playerX : playerO} </span>
         </p>
       );
+    } else if (isDraw) {
+      return <p className="status-head">Game Drawn!!!</p>;
     } else {
       return (
         <p className="status-head">
